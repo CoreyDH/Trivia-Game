@@ -12,7 +12,27 @@
 <body>
   <div class="container">
     <div class="row">
-
+      <h1>Video Game Trivia</h1>
+      <h4>Time Remaining <span id="timer"></span></h4>
+      <div class="col-md-12" id="trivia-questions">
+        <h3 id="trivia-question"></h3>
+        <ul id="trivia-choices"></ul>
+      </div>
+      <div class="col-md-12" id="trivia-answers">
+        <h2>You answered <span  id="trivia-answer-guess"></span>!</h2>
+        <h4>The correct answer was.. <span id="trivia-answer"></span></h4>
+        <div id="trivia-answer-image"></div>
+      </div>
+      <div class="col-md-12" id="trivia-end">
+        <h2>GAME OVER</h2>
+        <h4>Here's your total score.</h4>
+        <ul id="trivia-score">
+          <li>Correct: <span id="trivia-end-right"></span></li>
+          <li>Incorrect: <span id="trivia-end-wrong"></span></li>
+          <li>Unanswered: <span id="trivia-end-unanswered"></span></li>
+        </ul>
+        <a href="#" class="btn btn-danger trivia-newgame">Continue ?</a>
+      </div>
     </div>
   </div>
 </body>
