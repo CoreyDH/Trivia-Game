@@ -40,30 +40,30 @@
           answer: 'Final Fantasy VI',
           answerPic: 'ff6.jpg',
         },
-        // {
-        //   question: '',
-        //   choices: [],
-        //   answer: '',
-        //   answerPic: '',
-        // },
-        // {
-        //   question: '',
-        //   choices: [],
-        //   answer: '',
-        //   answerPic: '',
-        // },
-        // {
-        //   question: '',
-        //   choices: [],
-        //   answer: '',
-        //   answerPic: '',
-        // },
-        // {
-        //   question: '',
-        //   choices: [],
-        //   answer: '',
-        //   answerPic: '',
-        // },
+        {
+          question: 'Of the following Super Mario games, the best-selling version of the 1990s was:',
+          choices: ['Super Mario World', 'Super Mario Kart', 'Super Mario Land', 'Super Mario All Stars'],
+          answer: 'Super Mario World',
+          answerPic: 'smworld.jpg',
+        },
+        {
+          question: 'Street Fighter II can host up to _____ player(s) simultaneously.',
+          choices: ['1', '2', '4', '6'],
+          answer: '2',
+          answerPic: 'streetfighter.jpg',
+        },
+        {
+          question: 'The only color Pokemon game you couldn\t find in 1997 was:',
+          choices: ['Red', 'Blue', 'Yellow', 'Green'],
+          answer: 'Green',
+          answerPic: 'pokemon.jpg',
+        },
+        {
+          question: 'Which of the following characters was first introduced in Mega Man X?',
+          choices: ['Proto Man', 'Dr. Wily', 'Rush', 'Zero'],
+          answer: 'Zero',
+          answerPic: 'zero.jpg',
+        },
       ];
     };
 
@@ -74,7 +74,7 @@
         this.questions = new Questions();
         this.query = '';
         this.imgPath = 'assets/images/';
-        this.questionTimer = 15;  // time for each question in seconds
+        this.questionTimer = 20;  // time for each question in seconds
         this.transitionTimer = 5; // time to show each answer in seconds
         this.score = {
           right: 0,
