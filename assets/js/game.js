@@ -68,13 +68,14 @@
     };
 
     var trivia = {
+
       init: function() {
 
         this.questions = new Questions();
         this.query = '';
         this.imgPath = 'assets/images/';
-        this.questionTimer = '30';  // in seconds
-        this.transitionTimer = '1'; // in seconds
+        this.questionTimer = 15;  // time for each question in seconds
+        this.transitionTimer = 5; // time to show each answer in seconds
         this.score = {
           right: 0,
           wrong: 0,
@@ -83,6 +84,47 @@
 
         this.reset();
         this.loadNewQuestion();
+
+      },
+      timer: {
+
+        start: function() {
+
+          this.$el = $('#timer');
+          this.$el.css({'color' : '#fff'});
+          this.limit = trivia.questionTimer;
+
+          this.$el.text(this.limit);
+          this.clock = setInterval(function() {
+            trivia.timer.show();
+          }, 1000);
+
+        },
+        show: function() {
+
+          this.$el.text(this.limit);
+          this.limit--;
+
+          if(this.limit < 10) {
+            this.$el.css({'color' : 'red'});
+          }
+
+          if(this.limit < 0) {
+            this.stop();
+          }
+
+        },
+        pause: function() {
+
+          clearInterval(this.clock);
+
+        },
+        stop: function() {
+
+          this.pause();
+          trivia.loadCorrectAnswer();
+
+        }
 
       },
       reset: function() {
@@ -97,15 +139,29 @@
         $('#trivia-choices').off();
 
       },
+      loadEvents: function() {
+
+        var self = this;
+
+        $('#trivia-choices').on('click', 'li', function(event) {
+
+          var userAnswer = event.target.textContent;
+
+          self.loadCorrectAnswer(userAnswer);
+
+        });
+      },
       loadNewQuestion: function() {
 
         if(this.questions.length > 0) {
 
+          this.timer.start();
           this.query = this.getQuestion();
 
           this.loadQuestion();
           this.loadAnswers();
           this.loadEvents();
+
 
           $('#trivia-answers').hide();
           $('#trivia-questions').fadeIn();
@@ -115,16 +171,6 @@
           this.endGame();
 
         }
-
-      },
-      endGame: function() {
-
-        $('#trivia-questions').hide();
-        $('#trivia-answers').hide();
-        $('#trivia-end').fadeIn();
-        $('#trivia-end-right').html(this.score.right);
-        $('#trivia-end-wrong').html(this.score.wrong);
-        $('#trivia-end-unanswered').html(this.score.unanswered);
 
       },
       getQuestion: function() {
@@ -148,13 +194,14 @@
         $('#trivia-choices').empty();
 
         for(var i=0; i < this.query.choices.length; i++) {
-          $('#trivia-choices').append('<li id="'+i+'">'+this.query.choices[i]+'</li>');
+          $('#trivia-choices').append('<li id="'+i+'"><span>'+this.query.choices[i]+'</span></li>');
         }
 
       },
       loadCorrectAnswer: function(userAnswer) {
 
         this.unloadEvents();
+        this.timer.pause();
 
         var answerCheck;
 
@@ -177,7 +224,7 @@
 
         }
 
-        $('#trivia-answer-guess').html(answerCheck+'.');
+        $('#trivia-answer-guess').html(answerCheck);
 
         $('#trivia-answer').html(this.query.answer);
 
@@ -187,26 +234,23 @@
         $('#trivia-answers').fadeIn();
 
       },
-      loadEvents: function() {
+      endGame: function() {
 
-        var self = this;
+        $('#trivia-questions').hide();
+        $('#trivia-answers').hide();
+        $('#trivia-end').fadeIn();
+        $('#trivia-end-right').html(this.score.right);
+        $('#trivia-end-wrong').html(this.score.wrong);
+        $('#trivia-end-unanswered').html(this.score.unanswered);
 
-        $('#trivia-choices').on('click', 'li', function(event) {
-
-          var userAnswer = event.target.textContent;
-
-          self.loadCorrectAnswer(userAnswer);
-
-        });
       }
     };
 
     // Event Listeners
     $('.trivia-newgame').on('click', function() {
+      $('.trivia-instruction').hide();
       trivia.init();
     });
-
-    trivia.init();
 
   });
 })(jQuery);

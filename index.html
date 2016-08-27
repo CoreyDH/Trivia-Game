@@ -13,25 +13,31 @@
   <div class="container">
     <div class="row">
       <h1>Video Game Trivia</h1>
-      <h4>Time Remaining <span id="timer"></span></h4>
-      <div class="col-md-12" id="trivia-questions">
-        <h3 id="trivia-question"></h3>
-        <ul id="trivia-choices"></ul>
+      <div class="trivia">
+        <h4 class="timer-container">Time Remaining: <span id="timer"></span></h4>
+        <div class="col-md-12" id="trivia-questions">
+          <h4 id="trivia-question"></h4>
+          <ul id="trivia-choices"></ul>
+        </div>
+        <div class="col-md-12" id="trivia-answers">
+          <h3>You answered <span  id="trivia-answer-guess"></span>!</h3>
+          <h4>The correct answer was.. <span id="trivia-answer"></span></h4>
+          <div id="trivia-answer-image"></div>
+        </div>
+        <div class="col-md-12" id="trivia-end">
+          <h2 id="game-over">GAME OVER</h2>
+          <h4>Here's your total score.</h4>
+          <ul id="trivia-score">
+            <li>Correct: <span id="trivia-end-right"></span></li>
+            <li>Incorrect: <span id="trivia-end-wrong"></span></li>
+            <li>Unanswered: <span id="trivia-end-unanswered"></span></li>
+          </ul>
+          <a href="#" class="btn trivia-newgame">Continue?</a>
+        </div>
       </div>
-      <div class="col-md-12" id="trivia-answers">
-        <h2>You answered <span  id="trivia-answer-guess"></span>!</h2>
-        <h4>The correct answer was.. <span id="trivia-answer"></span></h4>
-        <div id="trivia-answer-image"></div>
-      </div>
-      <div class="col-md-12" id="trivia-end">
-        <h2>GAME OVER</h2>
-        <h4>Here's your total score.</h4>
-        <ul id="trivia-score">
-          <li>Correct: <span id="trivia-end-right"></span></li>
-          <li>Incorrect: <span id="trivia-end-wrong"></span></li>
-          <li>Unanswered: <span id="trivia-end-unanswered"></span></li>
-        </ul>
-        <a href="#" class="btn btn-danger trivia-newgame">Continue ?</a>
+      <div class="trivia-instruction">
+        <p>Hi, welcome to video game trivia! Where you'll have 10 questions to test your video game knowledge against.  You'll have 15 seconds for each questions, the correct answer will be revealed after each choice.</p>
+        <a href="#" id="ready" class="btn trivia-newgame">Ready?</a>
       </div>
     </div>
   </div>
